@@ -19,7 +19,6 @@
       "jellyfin"
       "qbittorrent"
       "radarr"
-      "bazarr"
       "sonarr"
       "prowlarr"
       "jellyseerr"
@@ -53,7 +52,6 @@
     radarr = jellyfin;
     prowlarr = jellyfin;
     sonarr = radarr;
-    bazarr = radarr;
     jellyseerr = jellyfin;
     qbittorrent = lib.mkMerge [
       jellyfin

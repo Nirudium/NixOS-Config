@@ -5,8 +5,6 @@
 }: {
   hardware.opengl = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
   };
 
   services.xserver.videoDrivers = ["nvidia"];
@@ -18,7 +16,7 @@
     open = false;
     nvidiaSettings = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
   boot.initrd.kernelModules = ["nvidia"];
   environment = {
@@ -27,11 +25,12 @@
       podman-tui
       docker-compose
       #podman-compose
-      vesktop
       inkscape
       krita
       gimp
       steam-tui
+      bitwarden
+      protontricks
     ];
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
@@ -50,5 +49,13 @@
     };
   };
 
+  programs.appimage.binfmt = true;
+
   hardware.nvidia-container-toolkit.enable = true;
+  swapDevices = [
+    {
+      device = "/home/swap";
+      size = 32 * 1024;
+    }
+  ];
 }
